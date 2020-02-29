@@ -1,18 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
 import Space from './components/Space';
 
 function App() {
+  const appStyle = {
+    marginLeft: "30px",
+    marginRight: "30px",
+    marginTop: "200px",
+    border: "solid black"
+  }
   return (
-    <div className="App">
-      <header className="App-header">
+    <div style={appStyle} >
+   
         <Space />
-        <p>
-          Space
-        </p>
 
-      </header>
     </div>
   );
 }

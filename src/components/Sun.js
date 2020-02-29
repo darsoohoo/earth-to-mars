@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Earth from './Earth';
 
 const Sun = () => {
     const imgStyle = {
-        height: "400px",
-        weight: "400px",
-        borderRadius: "50%"
+        height: "370px",
+        weight: "370px",
+        borderRadius: "50%",
+        float:"left"
     }
     const sunPic = require('./../images/sun.gif')
     return (
-        <div>
             <img style={imgStyle} src={sunPic}/>
-        </div>
     );
 }
 
