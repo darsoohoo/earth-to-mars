@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 const h1Style = {
-    marginLeft: "20%",
+    marginLeft: "25%",
     marginTop:"20%"
 }
 

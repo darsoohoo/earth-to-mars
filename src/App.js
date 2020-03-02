@@ -2,12 +2,19 @@ import React,{ Component } from 'react';
 import './App.css';
 import Space from './components/Space';
 import Timer from './components/Timer';
+import ShootingStars from './music/shootingstars.mp3';
 import { makeStyles } from '@material-ui/core/styles';
+import {Howl, Howler} from 'howler';
 
+const sound = new Howl({
+  src: ShootingStars
+})
 
 class App extends Component {
+
   constructor(props) {
     super(props)
+
     this.state = {
         seconds: 60,
         unitOfTime: null,
@@ -15,7 +22,7 @@ class App extends Component {
         canStart: null,
         pictureInterval: 1,
         totalTime: 60,
-
+        playMode: 'sustain'
     };
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
@@ -27,6 +34,8 @@ componentDidMount() {
   }, 7000)
 }
 
+
+
 incrementer(secondsLeft){
   let interval = secondsLeft + 1;
   if(interval === 3) {
@@ -36,7 +45,6 @@ incrementer(secondsLeft){
 }
 
 componentWillUnmount () {
-
   clearInterval(this.pictureIncrementer)
 }
 
@@ -57,13 +65,17 @@ startTimer() {
           }
       }, 1000);
   }
+
+sound.play();
 }
+
 
 stopTimer() {
   if (this.state.status === 'STARTED') {
       clearInterval(this.interval);
       this.setState(() => ({ status: 'STOPPED' }));
   }
+  sound.stop();
 }
 
 restartTimer() {
@@ -95,6 +107,7 @@ restartTimer() {
     }
     return (
       <main style={mainStyle}>
+
           <Timer
               seconds={this.state.seconds}
               minutes={this.state.minutes}
@@ -102,6 +115,7 @@ restartTimer() {
               startTimer={this.startTimer}
               stopTimer={this.stopTimer}
               restartTimer={this.restartTimer}
+
 
       
           />
