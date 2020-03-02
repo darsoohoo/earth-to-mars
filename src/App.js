@@ -29,14 +29,14 @@ componentDidMount() {
 
   this.pictureIncrementer = setInterval(() => {
     this.setState({pictureInterval: this.incrementer(this.state.pictureInterval) })
-  }, 4000)
+  }, 7000)
 
 }
 
 
 incrementer(seconds){
   let interval = seconds + 1;
-  if(interval === 13) {
+  if(interval === 10) {
     interval = 1
   }
   return interval
