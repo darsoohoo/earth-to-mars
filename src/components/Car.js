@@ -15,11 +15,10 @@ const Car = ({ percentComplete }) => {
         marginTop: "60px",
         marginBottom: "0px",
         marginLeft: `${percentComplete}%`,
-        // border: "solid red",
-        paddingTop: "50px"
+        paddingTop: "75px",
+        paddingLeft: "65px"
     }
     const divStyle = {
-        // border: "solid yellow",
         padding: "0",
         marginTop: "0"
     }
@@ -27,7 +26,7 @@ const Car = ({ percentComplete }) => {
     const carPic = require('./../images/car.png')
     return (
         <div style={divStyle} className="col s6">
-            <h5 style={percentageStyle}>{percentComplete}%</h5>
+            <h5 style={percentageStyle}>{parseInt(percentComplete, 10)}%</h5>
             <img style={imgStyle} src={carPic}/>
         </div>
     );

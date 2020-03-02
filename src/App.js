@@ -9,24 +9,26 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        secondsLeft: 60,
-        secondsPast: 0,
-        minutes: 0,
-        hours: 0,
-        totalTime: 0,
-        pictureInterval: 1
-    }
+        seconds: 60,
+        unitOfTime: null,
+        status: null,
+        canStart: null,
+        pictureInterval: 1,
+        totalTime: 60,
+
+    };
+    this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
+    this.restartTimer = this.restartTimer.bind(this);
 }
 componentDidMount() {
   this.pictureIncrementer = setInterval(() => {
     this.setState({pictureInterval: this.incrementer(this.state.pictureInterval) })
   }, 7000)
-
 }
 
-
-incrementer(seconds){
-  let interval = seconds + 1;
+incrementer(secondsLeft){
+  let interval = secondsLeft + 1;
   if(interval === 3) {
     interval = 1
   }
@@ -34,18 +36,43 @@ incrementer(seconds){
 }
 
 componentWillUnmount () {
-  clearInterval(this.myInterval)
-  clearInterval(this.pictureIncrementer)
 
+  clearInterval(this.pictureIncrementer)
 }
 
 percentComplete() {
-  const percentCompletion = (this.state.milesPast/this.state.totalMiles) * 100;
+  const percentCompletion = (60-this.state.seconds)/60 * 100;
   return percentCompletion;
 }
 
+startTimer() {
+  if (this.state.status !== 'STARTED') {
+      this.setState(() => ({ status: 'STARTED' }));
+      this.interval = setInterval(() => {
+          this.setState((prevState) => ({ seconds: this.state.seconds - 1 }));
+          if (this.state.seconds === 0) {
+              clearInterval(this.interval);
+              this.setState(() => ({ status: null }));
+              this.stopTimer()
+          }
+      }, 1000);
+  }
+}
 
+stopTimer() {
+  if (this.state.status === 'STARTED') {
+      clearInterval(this.interval);
+      this.setState(() => ({ status: 'STOPPED' }));
+  }
+}
 
+restartTimer() {
+  if(this.state.status === 'STARTED' || this.state.status === 'STOPPED') {
+    this.setState(() => ({ status: 'RESTARTED'}))
+  }
+  clearInterval(this.interval);
+  this.setState(() => ({ status: null, timeInterval: null, seconds: 60 }));
+}
 
   render() {
     const imgUrl = require(`./images/space${this.state.pictureInterval}.jpg`);
@@ -69,15 +96,17 @@ percentComplete() {
     return (
       <main style={mainStyle}>
           <Timer
-              secondsLeft={this.state.secondsLeft}
-              secondsPast={this.state.secondsPast}
+              seconds={this.state.seconds}
               minutes={this.state.minutes}
               hours={this.state.hours}
-              startTime={this.startTime}
+              startTimer={this.startTimer}
+              stopTimer={this.stopTimer}
+              restartTimer={this.restartTimer}
+
+      
           />
           <Space 
-              secondsLeft={this.state.secondsLeft}
-              secondsPast={this.state.secondsPast}
+              seconds={this.state.seconds}
               minutes={this.state.minutes}
               hours={this.state.hours}
               percentComplete={this.percentComplete()}
