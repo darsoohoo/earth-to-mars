@@ -4,11 +4,13 @@ import Space from './components/Space';
 import Timer from './components/Timer';
 import ShootingStars from './music/shootingstars.mp3';
 import { makeStyles } from '@material-ui/core/styles';
-import {Howl, Howler} from 'howler';
+import {Howl} from 'howler';
 
-const sound = new Howl({
+let sound = new Howl({
   src: ShootingStars
 })
+
+
 
 class App extends Component {
 
@@ -22,7 +24,7 @@ class App extends Component {
         canStart: null,
         pictureInterval: 1,
         totalTime: 60,
-        playMode: 'sustain'
+        playMode: 'stop'
     };
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
@@ -65,8 +67,12 @@ startTimer() {
           }
       }, 1000);
   }
+if(this.state.playMode !== "PLAYING") {
+  sound.play();
+  this.setState({playMode: "PLAYING"})
+}
 
-sound.play();
+
 }
 
 
@@ -75,7 +81,10 @@ stopTimer() {
       clearInterval(this.interval);
       this.setState(() => ({ status: 'STOPPED' }));
   }
+
   sound.stop();
+  this.setState({playMode: "STOPPED"})
+
 }
 
 restartTimer() {
@@ -84,6 +93,8 @@ restartTimer() {
   }
   clearInterval(this.interval);
   this.setState(() => ({ status: null, timeInterval: null, seconds: 60 }));
+  sound.stop();
+  this.setState({playMode: "STOPPED"})
 }
 
   render() {
