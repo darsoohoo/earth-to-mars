@@ -44,18 +44,8 @@ percentComplete() {
   return percentCompletion;
 }
 
-startTime(time) {
-  let timeLeft;
-  let int = setInterval(() => {
-    timeLeft = timeLeft - 1;
-    if(timeLeft === 0) {
-      return
-    }
-  }, 1000)
-  return timeLeft;
- 
 
-}
+
 
   render() {
     const imgUrl = require(`./images/space${this.state.pictureInterval}.jpg`);
@@ -68,11 +58,14 @@ startTime(time) {
     paddingBottom: "30px",  
     backgroundImage: "url(" + imgUrl+ ")",
     backgroundPosition: 'center',
-    backgroundSize: 'cover',
     minHeight:"896px",
     color: "white"}
 
-
+    const buttonStyle={
+      backgroundColor: "white",
+      color: "black",
+      border: "solid white"
+    }
     return (
       <main style={mainStyle}>
           <Timer
