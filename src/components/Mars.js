@@ -5,12 +5,16 @@ const Mars = () => {
         height: "100px",
         weight: "100px",
         borderRadius: "50%",
-        float: "right"
+        float: "left",
+        marginTop: "150px",
+        marginRight: "20px"
     }
     const marsPic = require('./../images/mars.gif')
     return (
- 
+        <div className="col s2">
             <img style={imgStyle} src={marsPic}/>
+        </div>
+        
   
     );
 }

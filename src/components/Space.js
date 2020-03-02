@@ -7,11 +7,8 @@ import Timer from './Timer';
 
 const Space = props => {
 
-        const spaceStyle = {
-            backGroundColor: "282c34"
-        }
         return (
-            <div style={spaceStyle} className="space">
+            <div className="row">
                 <Timer 
                     secondsLeft={props.secondsLeft}
                     secondsPast={props.secondsPast}
@@ -23,7 +20,9 @@ const Space = props => {
                 />
                 <Sun />
                 <Earth  />
-                <Car />
+                <Car 
+                    percentComplete={props.percentComplete}
+                />
                 <Mars />
             </div>
         )
