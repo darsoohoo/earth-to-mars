@@ -36,7 +36,7 @@ componentDidMount() {
 
 incrementer(seconds){
   let interval = seconds + 1;
-  if(interval === 10) {
+  if(interval === 8) {
     interval = 1
   }
   return interval
