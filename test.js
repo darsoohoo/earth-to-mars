@@ -20,7 +20,6 @@
 // }
 function travelTime(distance, speed) {
  
-    
         // how many hours will it take to get to mars if you go 2000 miles an hour?
    
         this.hours = distance/speed;
@@ -38,8 +37,6 @@ function travelTime(distance, speed) {
         this.seconds = this.minutes * 60;
         console.log(this.seconds, 'seconds')
         
-
-
 }
 
 let lamboTime = new travelTime(48000000, 2000)

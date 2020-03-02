@@ -1,14 +1,33 @@
 import React from 'react';
 
-const Car = () => {
+const Car = ({ percentComplete }) => {
+
+    console.log("percent complete", percentComplete)
+    
     const imgStyle = {
         height: "90px",
         weight: "90px",
-        marginTop: "150px"
+        marginLeft: `${percentComplete}%`,
     }
+    const percentageStyle = {
+        height: "90px",
+        weight: "90px",
+        marginTop: "60px",
+        marginBottom: "0px",
+        marginLeft: `${percentComplete}%`,
+        // border: "solid red",
+        paddingTop: "50px"
+    }
+    const divStyle = {
+        // border: "solid yellow",
+        padding: "0",
+        marginTop: "0"
+    }
+
     const carPic = require('./../images/car.png')
     return (
-        <div>
+        <div style={divStyle} className="col s6">
+            <h5 style={percentageStyle}>{percentComplete}%</h5>
             <img style={imgStyle} src={carPic}/>
         </div>
     );

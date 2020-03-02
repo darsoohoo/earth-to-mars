@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import Space from './components/Space';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
         totalMiles: 48000000,
         milesLeft: 48000000,
         milesPast: 0,
+        pictureInterval: 1
     }
 }
 componentDidMount() {
@@ -23,10 +25,28 @@ componentDidMount() {
           milesLeft: this.calcMilesLeft(this.state.secondsPast)
       }))
   }, 1000)
+
+
+  this.pictureIncrementer = setInterval(() => {
+    this.setState({pictureInterval: this.incrementer(this.state.pictureInterval) })
+  }, 4000)
+
 }
+
+
+incrementer(seconds){
+  let interval = seconds + 1;
+  if(interval === 13) {
+    interval = 1
+  }
+  return interval
+}
+
 
 componentWillUnmount () {
   clearInterval(this.myInterval)
+  clearInterval(this.pictureIncrementer)
+
 }
 
 calcMilesPast(seconds) {
@@ -40,17 +60,31 @@ calcMilesLeft(seconds) {
   return parseFloat(this.state.milesLeft, 10);
 }
 
-  render() {
+percentComplete() {
+  const percentCompletion = (this.state.milesPast/this.state.totalMiles) * 100;
+  return percentCompletion;
+}
 
-    const appStyle = {
-      marginLeft: "30px",
-      marginRight: "30px",
-      marginTop: "20px",
+  render() {
+    const imgUrl = require(`./images/space${this.state.pictureInterval}.jpg`);
+
+    const h4Style = {
+      color: "white"
     }
+    const mainStyle = {
+    paddingLeft: "20px",
+    paddingTop: "30px",
+    paddingBottom: "30px",  
+    backgroundImage: "url(" + imgUrl+ ")",
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    minHeight:"896px",
+    color: "white"}
+    
     return (
-      <div style={appStyle} >
-         <h4>48,000,000 mile drive to Mars @2000mph</h4>
-         <h4>Start Date: 2/29/2020 - End Date: 2.73972602739726 years</h4>
+      <main style={mainStyle}>
+         <h4 style={h4Style}>48,000,000 mile drive to Mars @2000mph</h4>
+         <h4 style={h4Style}>Start Date: 3/1/2020 - End Date: 2.73972602739726 years</h4>
           <Space 
                   secondsLeft={this.state.secondsLeft}
                   secondsPast={this.state.secondsPast}
@@ -59,9 +93,10 @@ calcMilesLeft(seconds) {
                   totalMiles={this.state.totalMiles}
                   milesLeft={this.state.milesLeft}
                   milesPast={this.state.milesPast}
+                  percentComplete={this.percentComplete()}
           />
   
-      </div>
+      </main>
     );
   }
 }

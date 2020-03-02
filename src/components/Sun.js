@@ -10,7 +10,9 @@ const Sun = () => {
     }
     const sunPic = require('./../images/sun.gif')
     return (
-            <img style={imgStyle} src={sunPic}/>
+           <div className="col s2">
+                <img style={imgStyle} src={sunPic}/>
+           </div>
     );
 }
 

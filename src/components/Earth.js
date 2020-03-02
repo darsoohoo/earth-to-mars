@@ -5,13 +5,15 @@ const Earth = () => {
         height: "180px",
         weight: "180px",
         borderRadius: "50%",
-        float: "left",
+        float: "right",
         marginTop: "100px",
-        marginLeft: "50px",
+        marginLeft: "60px"
     }
     const earthPic = require('./../images/earth.gif')
     return (
-            <img style={imgStyle} src={earthPic}/>
+            <div className="col s2">
+                <img style={imgStyle} src={earthPic}/>
+            </div>
     );
 }
 
