@@ -1,30 +1,33 @@
-import React from 'react'
-import PropTypes from 'prop-types';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Button from './Button';
 
-const Timer = props => {
-    const {secondsLeft, secondsPast, milesLeft, milesPast} = props;
-    return (
-        <div>
-            <h5>Seconds Left: {secondsLeft}</h5>
-            <h5>Seconds Past: {secondsPast}</h5>
-            <h5>Miles Left: {milesLeft}</h5>
-            <h5>Miles Past: {milesPast}</h5>
-        </div>
-    )
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(1),
+      width: theme.spacing(16),
+      height: theme.spacing(16),
+    },
+  },
+}));
+
+const SimplePaper = props => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+        <Paper>  </Paper>
+        <Paper>  </Paper>
+        <Paper>  </Paper>
+        <Paper>{props.secondsLeft}</Paper>
+        <Button startTime={props.startTime} />
+    </div>
+  );
 }
 
-Timer.defaultProps = {
-    secondsLeft: 0,
-    secondsPast: 0,
-    milesLeft: 0,
-    milesPast: 0
-}
-
-Timer.propTypes = {
-    secondsLeft: PropTypes.number.isRequired,
-    secondsPast: PropTypes.number.isRequired,
-    milesLeft: PropTypes.number.isRequired,
-    milesPast: PropTypes.number.isRequired
-}
-
-export default Timer
+export default SimplePaper

@@ -9,15 +9,6 @@ const Space = props => {
 
         return (
             <div className="row">
-                <Timer 
-                    secondsLeft={props.secondsLeft}
-                    secondsPast={props.secondsPast}
-                    minutes={props.minutes}
-                    hours={props.hours}
-                    totalMiles={props.totalMiles}
-                    milesLeft={props.milesLeft}
-                    milesPast={props.milesPast}
-                />
                 <Sun />
                 <Earth  />
                 <Car 
