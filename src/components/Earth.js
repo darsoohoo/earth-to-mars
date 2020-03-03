@@ -2,8 +2,8 @@ import React from 'react';
 
 const Earth = () => {
     const imgStyle = {
-        height: "180px",
-        weight: "180px",
+        height: "160px",
+        weight: "160px",
         borderRadius: "50%",
         float: "right",
         marginTop: "100px",

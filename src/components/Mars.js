@@ -2,8 +2,8 @@ import React from 'react';
 
 const Mars = () => {
     const imgStyle = {
-        height: "100px",
-        weight: "100px",
+        height: "90px",
+        weight: "90px",
         borderRadius: "50%",
         float: "left",
         marginTop: "150px",

@@ -6,9 +6,12 @@ import Mars from './Mars';
 import Timer from './Timer';
 
 const Space = props => {
+    const divStyle = {
+        marginTop: "70px"
+    }
 
         return (
-            <div className="row">
+            <div style={divStyle} className="row">
                 <Sun />
                 <Earth  />
                 <Car 

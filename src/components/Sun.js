@@ -3,8 +3,8 @@ import Earth from './Earth';
 
 const Sun = () => {
     const imgStyle = {
-        height: "370px",
-        weight: "370px",
+        height: "350px",
+        weight: "350px",
         borderRadius: "50%",
         float:"left"
     }

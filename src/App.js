@@ -36,11 +36,9 @@ componentDidMount() {
   }, 7000)
 }
 
-
-
 incrementer(secondsLeft){
   let interval = secondsLeft + 1;
-  if(interval === 3) {
+  if(interval === 8) {
     interval = 1
   }
   return interval
