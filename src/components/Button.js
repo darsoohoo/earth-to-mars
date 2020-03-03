@@ -19,7 +19,7 @@ const ContainedButtons = props => {
 
   return (
     <div className={classes.root}>
-      <Button onClick={(e) =>  props.startTimer()} variant="contained" color="primary">
+      <Button onClick={(e) =>  (props.startTimer())} variant="contained" color="primary">
         Start
       </Button>
       <Button onClick={(e) =>  props.stopTimer()}  variant="contained" color="secondary">

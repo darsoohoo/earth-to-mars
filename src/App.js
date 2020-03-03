@@ -24,20 +24,25 @@ class App extends Component {
         canStart: null,
         pictureInterval: 1,
         totalTime: 60,
-        playMode: 'stop'
+        playMode: 'stop',
+        backgroundMode: 'STOPPED'
     };
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.restartTimer = this.restartTimer.bind(this);
 }
 componentDidMount() {
+
+}
+
+backgroundChanger() {
   this.pictureIncrementer = setInterval(() => {
     this.setState({pictureInterval: this.incrementer(this.state.pictureInterval) })
   }, 7900)
 }
 
-incrementer(secondsLeft){
-  let interval = secondsLeft + 1;
+incrementer(pictureInterval){
+  let interval = pictureInterval + 1;
   if(interval === 8) {
     interval = 1
   }
@@ -45,7 +50,7 @@ incrementer(secondsLeft){
 }
 
 componentWillUnmount () {
-  clearInterval(this.pictureIncrementer)
+
 }
 
 percentComplete() {
@@ -70,6 +75,12 @@ if(this.state.playMode !== "PLAYING") {
   this.setState({playMode: "PLAYING"})
 }
 
+if(this.state.backgroundMode !== "PLAYING") {
+  this.backgroundChanger();
+  this.setState({backgroundMode: "PLAYING"})
+}
+
+
 
 }
 
@@ -82,6 +93,8 @@ stopTimer() {
 
   sound.stop();
   this.setState({playMode: "STOPPED"})
+  clearInterval(this.pictureIncrementer)
+  this.setState({backgroundMode: "STOPPED"})
 
 }
 
