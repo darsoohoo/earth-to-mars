@@ -33,7 +33,7 @@ class App extends Component {
 componentDidMount() {
   this.pictureIncrementer = setInterval(() => {
     this.setState({pictureInterval: this.incrementer(this.state.pictureInterval) })
-  }, 7000)
+  }, 7900)
 }
 
 incrementer(secondsLeft){
