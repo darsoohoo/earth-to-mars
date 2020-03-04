@@ -59,6 +59,17 @@ percentComplete() {
 }
 
 startTimer() {
+  if (this.state.status !== 'STARTED' && this.state.seconds === 0) {
+    this.setState(() => ({ status: 'STARTED', seconds: 60 }));
+    this.interval = setInterval(() => {
+        this.setState((prevState) => ({ seconds: this.state.seconds - 1 }));
+        if (this.state.seconds === 0) {
+            clearInterval(this.interval);
+            this.setState(() => ({ status: null }));
+            this.stopTimer()
+        }
+    }, 1000);
+}
   if (this.state.status !== 'STARTED') {
       this.setState(() => ({ status: 'STARTED' }));
       this.interval = setInterval(() => {
@@ -94,6 +105,7 @@ stopTimer() {
   sound.stop();
   this.setState({playMode: "STOPPED"})
   clearInterval(this.pictureIncrementer)
+  clearInterval(this.interval);
   this.setState({backgroundMode: "STOPPED"})
 
 }
