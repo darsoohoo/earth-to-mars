@@ -28,7 +28,7 @@ const Car = ({ percentComplete }) => {
     return (
         <div style={divStyle} className="col s6">
             <h5 style={percentageStyle}>{parseInt(percentComplete, 10)}%</h5>
-            {percentComplete > 39 ?  <img style={imgStyle} src={corgiPic}/> : <img style={imgStyle} src={carPic}/> }
+            {percentComplete > 80 ? <img style={imgStyle} src={corgiPic}/> : <img style={imgStyle} src={carPic}/> }
             
         </div>
     );
