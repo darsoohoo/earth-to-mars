@@ -43,7 +43,7 @@ backgroundChanger() {
 
 incrementer(pictureInterval){
   let interval = pictureInterval + 1;
-  if(interval === 8) {
+  if(interval === 2) {
     interval = 1
   }
   return interval
