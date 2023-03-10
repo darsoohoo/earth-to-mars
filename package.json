@@ -2,6 +2,10 @@
   "name": "space-drive",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node" : "10.16.3",
+    "npm" : "6.9.0"
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/styles": "^4.9.0",
